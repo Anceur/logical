@@ -1,0 +1,65 @@
+<!-- <div>
+  <h1>Student Management</h1>
+  <ul>
+    <div class="category-buttons">
+      <button (click)="setCategory('Category 1')">Category 1</button>
+      <button (click)="setCategory('Category 2')">Category 2</button>
+      <button (click)="setCategory('Category 3')">Category 3</button>
+    </div>
+    
+    <li *ngFor="let student of students">
+      <span>
+        {{ student.FirstName }} {{ student.LastName }} - {{ student.Address }} - {{ student.DateOfBirth }} - {{ student.Email }} - {{ student.Level }} - {{ student.Subject }}
+      </span>
+      <button (click)="editStudent(student)">Edit</button>
+      <button (click)="deleteStudent(student.key)">X</button>
+    </li>
+  </ul>
+  <a [routerLink]="['/student-management-form']">Add New Student</a>
+
+  <div *ngIf="selectedStudent">
+    <h2>Edit Student</h2>
+    <form (ngSubmit)="saveStudent()">
+      <div>
+        <label for="editFirstName">First Name:</label>
+        <input id="editFirstName" [(ngModel)]="selectedStudent.FirstName" name="editFirstName" />
+      </div>
+      <div>
+        <label for="editLastName">Last Name:</label>
+        <input id="editLastName" [(ngModel)]="selectedStudent.LastName" name="editLastName" />
+      </div>
+      <div>
+        <label for="editAddress">Address:</label>
+        <input id="editAddress" [(ngModel)]="selectedStudent.Address" name="editAddress" />
+      </div>
+      <div>
+        <label for="editDateOfBirth">Date of Birth:</label>
+        <input id="editDateOfBirth" type="date" [(ngModel)]="selectedStudent.DateOfBirth" name="editDateOfBirth" />
+      </div>
+      <div>
+        <label for="editEmail">Email:</label>
+        <input id="editEmail" type="email" [(ngModel)]="selectedStudent.Email" name="editEmail" />
+      </div>
+      <div>
+        <label for="editLevel">Level:</label>
+        <input id="editLevel" [(ngModel)]="selectedStudent.Level" name="editLevel" />
+      </div>
+      <div>
+        <label for="editSubject">Subject:</label>
+        <input id="editSubject" [(ngModel)]="selectedStudent.Subject" name="editSubject" />
+      </div>
+      <button type="submit">Save</button>
+      <button type="button" (click)="cancelEdit()">Cancel</button>
+    </form>
+  </div>
+</div> -->
+<div>
+  <h1>Student Management</h1>
+  <div class="category-buttons">
+    <button [routerLink]="['/categories-one']">Category 1</button>
+    <button [routerLink]="['/categories-two']">Category 2</button>
+    <button [routerLink]="['/categories-three']">Category 3</button>
+  </div>
+  <a [routerLink]="['/student-management-form']">Add New Student</a>
+  <a routerLink="/home">Return</a>
+</div>

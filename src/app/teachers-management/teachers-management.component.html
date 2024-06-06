@@ -1,0 +1,30 @@
+<div>
+  <h1>Teachers Management</h1>
+  <ul>
+    <li *ngFor="let teacher of teachers">
+      <span>
+        {{ teacher.FirstName }} {{ teacher.LastName }} - {{ teacher.Category }}
+      </span>
+      <button (click)="editTeacher(teacher)">Edit</button>
+      <button (click)="deleteTeacher(teacher)">X</button>
+    </li>
+  </ul>
+  <a [routerLink]="['/teachers']">Add New Teacher</a>
+
+  <div *ngIf="selectedTeacher">
+    <h2>Edit Teacher</h2>
+    <form (ngSubmit)="saveTeacher()">
+      <div>
+        <label for="editFirstName">First Name:</label>
+        <input id="editFirstName" [(ngModel)]="selectedTeacher.FirstName" name="editFirstName" />
+      </div>
+      <div>
+        <label for="editLastName">Last Name:</label>
+        <input id="editLastName" [(ngModel)]="selectedTeacher.LastName" name="editLastName" />
+      </div>
+      <button type="submit">Save</button>
+      <button type="button" (click)="cancelEdit()">Cancel</button>
+    </form>
+  </div>
+  <button [routerLink]="['/home']">Return</button>
+</div>

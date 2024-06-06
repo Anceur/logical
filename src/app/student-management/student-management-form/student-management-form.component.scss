@@ -1,0 +1,82 @@
+// Variables for colors and spacing
+$primary-color: #2c3e50;
+$error-color: #e74c3c;
+$input-border-color: #bdc3c7;
+$input-focus-border-color: #3498db;
+$input-width: 300px; // Set the fixed width for input fields
+$padding: 15px;
+$margin: 10px;
+$border-radius: 5px;
+
+// Base styles
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ecf0f1;
+  color: $primary-color;
+  margin: 0;
+  padding: 0;
+}
+
+// Container styles
+div {
+  padding: $padding;
+  text-align: center;
+
+  h1 {
+    margin-top: 0;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    div {
+      margin: $margin 0;
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type='text'],
+      input[type='date'],
+      input[type='email'],
+      select {
+        width: $input-width; // Set the fixed width
+        padding: $padding;
+        font-size: 16px;
+        border: 1px solid $input-border-color;
+        border-radius: $border-radius;
+        transition: border-color 0.3s;
+        box-sizing: border-box;
+
+        &:focus {
+          outline: none;
+          border-color: $input-focus-border-color;
+        }
+      }
+
+      div.error-message {
+        color: $error-color;
+        font-size: 14px;
+      }
+    }
+
+    button {
+      padding: $padding;
+      margin-top: $margin;
+      font-size: 18px;
+      color: #fff;
+      background-color: $primary-color;
+      border: none;
+      border-radius: $border-radius;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+}

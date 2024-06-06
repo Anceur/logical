@@ -1,0 +1,41 @@
+<div>
+  <h1>Add teachers</h1>
+  <form [formGroup]="teachersForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="firstName">First Name:</label>
+      <input id="firstName" formControlName="FirstName" />
+      <div *ngIf="teachersForm.controls['FirstName'].invalid && teachersForm.controls['FirstName'].touched">
+        First Name is required
+      </div>
+    </div>
+    <div>
+      <label for="lastName">Last Name:</label>
+      <input id="lastName" formControlName="LastName" />
+      <div *ngIf="teachersForm.controls['LastName'].invalid && teachersForm.controls['LastName'].touched">
+        Last Name is required
+      </div>
+    </div>
+    <div >
+      <label for="subject">Subject:</label>
+      <input id="subject" formControlName="Subject" />
+      <div  *ngIf="teachersForm.controls['Subject'].invalid && teachersForm.controls['Subject'].touched">
+        Subject is required
+      </div>
+    </div>
+    <div>
+      <label for="category">Category:</label>
+      <select id="category" formControlName="Category">
+        <option value="">Select Category</option>
+        <option value="Category 1">categories-one</option>
+        <option value="Category 2">categories-two</option>
+        <option value="Category 3">categories-three</option>
+      </select>
+      <div *ngIf="teachersForm.controls['Category'].invalid && teachersForm.controls['Category'].touched">
+        Category is required
+      </div>
+    </div>
+    
+    <button type="submit">Submit</button>
+    <button [routerLink]="['/teachers-management']" type="reset">Return</button>
+  </form>
+</div>

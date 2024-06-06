@@ -1,0 +1,71 @@
+// Variables for colors and spacing
+$primary-color: #2c3e50;
+$secondary-color: #ecf0f1;
+$highlight-color: #3498db;
+$text-color: #2c3e50;
+$padding: 15px;
+$margin: 10px;
+$border-radius: 5px;
+$button-font-size: 16px;
+$link-font-size: 18px;
+
+// Base styles
+
+
+// Container for the student management section
+div {
+  padding: $padding;
+  text-align: center;
+
+  h1 {
+    margin-top: 0;
+  }
+}
+
+// Category buttons container
+.category-buttons {
+  margin: $margin 0;
+  display: flex;
+  justify-content: center;
+  gap: $margin;
+
+  button {
+    padding: $padding;
+    font-size: $button-font-size;
+    color: $secondary-color;
+    background-color: $primary-color;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $highlight-color;
+    }
+  }
+}
+
+// Add new student link
+a {
+  display: inline-block;
+  margin-top: $margin;
+  padding: $padding;
+  font-size: $link-font-size;
+  color: $primary-color;
+  text-decoration: none;
+  border: 1px solid $primary-color;
+  border-radius: $border-radius;
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    background-color: $highlight-color;
+    color: $secondary-color;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .category-buttons {
+    flex-direction: column;
+  }
+}

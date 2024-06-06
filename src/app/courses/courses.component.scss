@@ -1,0 +1,40 @@
+// Variables for colors and spacing
+$primary-color: #2c3e50;
+$secondary-color: #3498db;
+$button-background-color: #2980b9;
+$button-hover-color: #1f618d;
+$button-text-color: #ffffff;
+$button-border-radius: 4px;
+$button-padding: 10px 20px;
+$button-margin: 5px;
+$category-margin: 20px;
+
+// Category styles
+.category {
+  margin-bottom: $category-margin;
+
+  h2, h3 {
+    color: $primary-color;
+    margin: 10px 0;
+  }
+
+  .subcategory {
+    display: flex;
+    flex-wrap: wrap;
+
+    button {
+      background-color: $button-background-color;
+      color: $button-text-color;
+      border: none;
+      border-radius: $button-border-radius;
+      padding: $button-padding;
+      margin: $button-margin;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: $button-hover-color;
+      }
+    }
+  }
+}

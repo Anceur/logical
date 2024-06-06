@@ -1,0 +1,89 @@
+<div>
+  <h1>Add Student</h1>
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="firstName">First Name:</label>
+      <input id="firstName" formControlName="FirstName" />
+      <div style="color: brown;" *ngIf="studentForm.controls['FirstName'].invalid && studentForm.controls['FirstName'].touched">
+        First Name is required
+      </div>
+    </div>
+    <div>
+      <label for="lastName">Last Name:</label>
+      <input id="lastName" formControlName="LastName" />
+      <div style="color: brown;" *ngIf="studentForm.controls['LastName'].invalid && studentForm.controls['LastName'].touched">
+        Last Name is required
+      </div>
+    </div>
+    <div>
+      <label for="address">Address:</label>
+      <input id="address" formControlName="Address" />
+      <div style="color: brown;" *ngIf="studentForm.controls['Address'].invalid && studentForm.controls['Address'].touched">
+        Address is required
+      </div>
+    </div>
+    <div>
+      <label for="dateOfBirth">Date of Birth:</label>
+      <input id="dateOfBirth" type="date" formControlName="DateOfBirth" />
+      <div style="color: brown;" *ngIf="studentForm.controls['DateOfBirth'].invalid && studentForm.controls['DateOfBirth'].touched">
+        Date of Birth is required
+      </div>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input id="email" type="email" formControlName="Email" />
+      <div style="color: brown;" *ngIf="studentForm.controls['Email'].invalid && studentForm.controls['Email'].touched">
+        Valid Email is required
+      </div>
+    </div>
+    <div>
+      <label for="level">Level:</label>
+      <input id="level" formControlName="Level" />
+      <div style="color: brown;" *ngIf="studentForm.controls['Level'].invalid && studentForm.controls['Level'].touched">
+        Level is required
+      </div>
+    </div>
+    
+    <div>
+      <label for="category">Category:</label>
+      <select id="category" formControlName="Category" (change)="onCategoryChange()">
+        <option value="">Select Category</option>
+        <option value="Category 1">categories-one</option>
+        <option value="Category 2">categories-two</option>
+        <option value="Category 3">categories-three</option>
+      </select>
+      <div style="color: brown;" *ngIf="studentForm.controls['Category'].invalid && studentForm.controls['Category'].touched">
+        Category is required
+      </div>
+    </div>
+    <div>
+      <label for="paid">Paye</label>
+      <input type="checkbox" id="paid" formControlName="Paye" />
+     
+    </div>
+    
+    <div  *ngIf="showSubjectField">
+      <label for="subject">Subject:</label>
+      <select formControlName="Subject" id="subject">
+      <option value="">Select Subject</option>
+      <option *ngFor="let teacher of teachers" >{{ teacher.Subject }}</option>
+    </select>
+    <div style="color: brown;" *ngIf="studentForm.controls['Subject'].invalid && studentForm.controls['Subject'].touched">
+      Subject selection is required
+    </div>
+    </div>
+    <div *ngIf="showTeachersField">
+      <label for="educate">Educate:</label>
+      <select id="educate" formControlName="Educate">
+        <option value="">Select Teacher</option>
+        <option *ngFor="let teacher of teachers" >{{ teacher.FirstName }}</option>
+      </select>
+      <div style="color: brown;" *ngIf="studentForm.controls['Educate'].invalid && studentForm.controls['Educate'].touched">
+        Teacher selection is required
+      </div>
+    </div>
+
+    <button type="submit">Submit</button>
+    <button [routerLink]="['/student-management']" type="reset">Return</button>
+  </form>
+</div>
