@@ -38,31 +38,19 @@ export class CategoriesOneComponent implements OnInit {
   getStudentsForTeacher(teacher: ITeacher): IStudent[] {
     return this.students.filter(student => student.Subject === teacher.Subject);
   }
+
+  editStudent(student: IStudent) {
+    this.selectedStudent = student;
+    // Navigate to the student management form or implement the logic for editing the student
+  }
+
   deleteStudent(student: IStudent) {
     if (student.key) {
-      this.studentService.deleteStudent( student.key).then(() => {
-        this.getStudents(); // Refresh the teacher list after deleting
+      this.studentService.deleteStudent(student.key).then(() => {
+        this.getStudents();  // Refresh the student list after deletion
       }).catch(error => {
-        console.error("Error deleting teacher: ", error);
+        console.error("Error deleting student: ", error);
       });
     }
-  }
-  editStudent(student: IStudent) {
-    this.selectedStudent = { ...student };
-  }
-
-  saveStudent() {
-    if (this.selectedStudent && this.selectedStudent.key) {
-      this.studentService.updateStudent(this.selectedStudent.key, this.selectedStudent).then(() => {
-        this.getStudents(); // Refresh the student list after saving
-        this.selectedStudent = null;
-      }).catch(error => {
-        console.error("Error updating student: ", error);
-      });
-    }
-  }
-
-  cancelEdit() {
-    this.selectedStudent = null;
   }
 }

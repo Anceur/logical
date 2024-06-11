@@ -12,58 +12,58 @@ import { IStudent } from '../../core/models/common.model';
   templateUrl: './student-management.component.html',
   styleUrls: ['./student-management.component.scss']
 })
-export class StudentManagementComponent implements OnInit {
-  students: IStudent[] = [];
-  selectedStudent: IStudent | null = null;
+export class StudentManagementComponent  {
+  // students: IStudent[] = [];
+  // selectedStudent: IStudent | null = null;
    
  
 
-  constructor(private studentService: StudentManagementService) { }
+  // constructor(private studentService: StudentManagementService) { }
 
-  ngOnInit(): void {
-    this.getAllStudents();
-  }
+  // ngOnInit(): void {
+  //   this.getAllStudents();
+  // }
 
-  getAllStudents() {
-    this.studentService.getAllStudents().subscribe({
-      next: (data: IStudent[]) => {
-        this.students = data;
-      },
-      error: (error: any) => {
-        console.error("Error fetching students: ", error);
-      }
-    });
-  }
+  // getAllStudents() {
+  //   this.studentService.getAllStudents().subscribe({
+  //     next: (data: IStudent[]) => {
+  //       this.students = data;
+  //     },
+  //     error: (error: any) => {
+  //       console.error("Error fetching students: ", error);
+  //     }
+  //   });
+  // }
 
-  deleteStudent(key: string | undefined) {
-    if (key) {
-      this.studentService.deleteStudent(key).then(() => {
-        this.students = this.students.filter(student => student.key !== key);
-      }).catch(error => {
-        console.error("Error deleting student: ", error);
-      });
-    } else {
-      console.error("Student key is undefined.");
-    }
-  }
+  // deleteStudent(key: string | undefined) {
+  //   if (key) {
+  //     this.studentService.deleteStudent(key).then(() => {
+  //       this.students = this.students.filter(student => student.key !== key);
+  //     }).catch(error => {
+  //       console.error("Error deleting student: ", error);
+  //     });
+  //   } else {
+  //     console.error("Student key is undefined.");
+  //   }
+  // }
 
-  editStudent(student: IStudent) {
-    this.selectedStudent = { ...student };
-  }
+  // editStudent(student: IStudent) {
+  //   this.selectedStudent = { ...student };
+  // }
 
-  saveStudent() {
-    if (this.selectedStudent && this.selectedStudent.key) {
-      this.studentService.updateStudent(this.selectedStudent.key, this.selectedStudent).then(() => {
-        this.getAllStudents();
-        this.selectedStudent = null;
-      }).catch(error => {
-        console.error("Error updating student: ", error);
-      });
-    }
-  }
+  // saveStudent() {
+  //   if (this.selectedStudent && this.selectedStudent.key) {
+  //     this.studentService.updateStudent(this.selectedStudent.key, this.selectedStudent).then(() => {
+  //       this.getAllStudents();
+  //       this.selectedStudent = null;
+  //     }).catch(error => {
+  //       console.error("Error updating student: ", error);
+  //     });
+  //   }
+  // }
 
-  cancelEdit() {
-    this.selectedStudent = null;
-  }
+  // cancelEdit() {
+  //   this.selectedStudent = null;
+  // }
 
 }

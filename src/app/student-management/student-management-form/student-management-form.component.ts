@@ -29,6 +29,8 @@ export class StudentManagementFormComponent {
       Subject: new FormControl(''),
       Paye :new FormControl('', [Validators.required]),
       Category: new FormControl('', [Validators.required]),
+      numerotel:new FormControl(''),
+      numerotelPere:new FormControl('',[Validators.required]),
       Educate: new FormControl('')
     });
   }

@@ -1,19 +1,30 @@
 <div>
-  <h1>Categories One</h1>
-  <ul>
-    <li *ngFor="let teacher of teachers">
-      <h2>First name: {{ teacher.FirstName }}</h2>
-      <h2>Last name: {{ teacher.LastName }}</h2>
-      <h2>Subject: {{ teacher.Subject }}</h2>
+    <h1 style="text-align: center;">الفئة الابتدائية</h1>
+    <div class="table">
       <ul>
-        <li *ngFor="let student of getStudentsForTeacher(teacher)">
-          <span>
-            {{ student.FirstName }} {{ student.LastName }} - {{ student.Address }} - {{ student.DateOfBirth }} - {{ student.Email }} - {{ student.Level }} - {{ student.Subject }} - {{ student.Category }}
-          </span>
-          <!-- <button (click)="editStudent(student)">Edit</button> -->
-          <button (click)="deleteStudent(student)">X</button>
-        </li>
+        <div *ngFor="let teacher of teachers">
+          <div class="table-teacher">
+            <h2>اللقب: {{ teacher.FirstName }}</h2>
+            <h2>الاسم: {{ teacher.LastName }}</h2>
+            <h2>المادة خاصة باستاذ: {{ teacher.Subject }}</h2>
+          </div>
+          <ul>
+            <div class="table-student">
+              <div>
+                <a [routerLink]="['/student-management-form']">اضافة طلاب</a>
+              </div>
+              <h3>الطلاب خاص باستاذ</h3>
+              <li *ngFor="let student of getStudentsForTeacher(teacher)">
+                <span>
+                  {{ student.FirstName }} {{ student.LastName }} - {{ student.Address }} - {{ student.DateOfBirth }} - {{ student.Email }} - {{ student.Level }} - {{ student.Subject }} - {{ student.Category }}
+                </span>
+                <button (click)="editStudent(student)">Edit</button>
+                <button (click)="deleteStudent(student)">X</button>
+              </li>
+            </div>
+          </ul>
+        </div>
       </ul>
-    </li>
-  </ul>
-</div>
+    </div>
+  </div>
+  
