@@ -1,30 +1,46 @@
 <div>
-  <h1>Teachers Management</h1>
+  <h1>إدارة المعلمين</h1>
+  <div class="search-container">
+    <input type="text" placeholder="ابحث عن معلم" [(ngModel)]="searchQuery" (input)="searchTeachers()" />
+    <i class="fas fa-search search-icon"></i>
+  </div>
+  
   <ul>
     <li *ngFor="let teacher of teachers">
-      <span>
+      <span (click)="clickCard(teacher.id)">
         {{ teacher.FirstName }} {{ teacher.LastName }} - {{ teacher.Category }}
       </span>
-      <button (click)="editTeacher(teacher)">Edit</button>
+      <button (click)="editTeacher(teacher)">تغير</button>
       <button (click)="deleteTeacher(teacher)">X</button>
     </li>
   </ul>
-  <a [routerLink]="['/teachers']">Add New Teacher</a>
+  <a [routerLink]="['/teachers']">إضافة معلم جديد</a>
 
   <div *ngIf="selectedTeacher">
-    <h2>Edit Teacher</h2>
+    <h2>تغيير المعلم</h2>
     <form (ngSubmit)="saveTeacher()">
       <div>
-        <label for="editFirstName">First Name:</label>
+        <label for="editFirstName">الاسم الأول</label>
         <input id="editFirstName" [(ngModel)]="selectedTeacher.FirstName" name="editFirstName" />
       </div>
       <div>
-        <label for="editLastName">Last Name:</label>
+        <label for="editLastName">اسم العائلة</label>
         <input id="editLastName" [(ngModel)]="selectedTeacher.LastName" name="editLastName" />
       </div>
-      <button type="submit">Save</button>
-      <button type="button" (click)="cancelEdit()">Cancel</button>
+      <div>
+        <label for="editSubject">المادة</label>
+        <input id="editSubject" [(ngModel)]="selectedTeacher.Subject" name="editSubject" />
+      </div>
+      <div>
+        <label for="editCategory">الفئة</label>
+        <input id="editCategory" [(ngModel)]="selectedTeacher.Category" name="editCategory" />
+      </div>
+      <button type="submit">يحفظ</button>
+      <button type="button" (click)="cancelEdit()">يلغي</button>
     </form>
   </div>
-  <button [routerLink]="['/home']">Return</button>
+  <a (click)="printPage()">طباعة</a>
+  <a [routerLink]="['/home']">عودة الى صفحة الرئسية</a>
+
+
 </div>

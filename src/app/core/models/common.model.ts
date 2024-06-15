@@ -13,9 +13,11 @@ export interface IStudent {
 }
 
 export interface ITeacher {
+  id:string;
   key?: string;
   FirstName: string;
   LastName: string;
   Subject: string;
   Category: string;
+  
 }

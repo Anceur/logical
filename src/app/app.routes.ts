@@ -13,58 +13,26 @@ import { CoursesComponent } from './courses/courses.component';
 import { PaymentComponent } from './payment/payment.component';
 import { TimetableComponent } from './timetable/timetable.component';
 import { ClassesComponent } from './classes/classes.component';
+import { ChaqueTeachersComponent } from './chaque-teachers/chaque-teachers.component';
 
 export const routes: Routes = [
-    {
-        path : '',redirectTo:'home',pathMatch:'full'
-    },
-    {
-        path : 'home',component:HomeComponent,
-    },
-    {
-        path : 'student-management',component:StudentManagementComponent
-    },
-    {
-        path : 'student-management-form',component:StudentManagementFormComponent
-    },
-    {
-        path :'categories',component:CategoriesComponent
-    },
-    {
-        path: 'categories-one',component:CategoriesOneComponent
-    },
-    {
-        path: 'categories-two',component:CategoriesTwoComponent
-    },
-    {
-        path: 'categories-three',component:CategoriesThreeComponent
-    },
-   
-    {
-        path: 'teachers',component:TeachersComponent
-    },
-    {
-        path :'teachers-management',component:TeachersManagementComponent
-    },
-    {
-        path:'courses',component:CoursesComponent
-    },
-    {
-        path:'payment',component:PaymentComponent
-    },
-    {
-        path :'classes',component:ClassesComponent
-    },
-    {
-        path :'timetable',component:TimetableComponent
-    },
-    {
-        path : '**',redirectTo:'home',pathMatch:'full'
-    },
-    
-
-    
-];
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent },
+    { path: 'student-management', component: StudentManagementComponent },
+    { path: 'student-management-form', component: StudentManagementFormComponent },
+    { path: 'categories', component: CategoriesComponent },
+    { path: 'categories-one', component: CategoriesOneComponent },
+    { path: 'categories-two', component: CategoriesTwoComponent },
+    { path: 'categories-three', component: CategoriesThreeComponent },
+    { path: 'teachers', component: TeachersComponent },
+    { path: 'teachers-management', component: TeachersManagementComponent },
+    { path: 'courses', component: CoursesComponent },
+    { path: 'payment', component: PaymentComponent },
+    { path: 'classes', component: ClassesComponent },
+    { path: 'timetable', component: TimetableComponent },
+    { path: 'teachers-management/chaque-teachers/:id', component: ChaqueTeachersComponent },
+    { path: '**', redirectTo: 'home', pathMatch: 'full' }
+  ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]

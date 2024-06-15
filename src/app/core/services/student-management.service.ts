@@ -24,9 +24,10 @@ export class StudentManagementService {
     ).valueChanges();
   }
 
-  updateTeacher(key: string, value: any): Promise<void> {
-    return this.db.list(`${this.ddbbPath}`).update(key, value);
+  updateTeacher(category: string, key: string, teacher: Partial<ITeacher>): Promise<void> {
+    return this.db.object(`${this.ddbbPath}/${category}/${key}`).update(teacher);
   }
+  
 
   deleteTeacher(category: string, key: string): Promise<void> {
     return this.db.list(`${this.ddbbPath}/${category}`).remove(key);
@@ -76,4 +77,8 @@ export class StudentManagementService {
   updateStudent(key: string, student: IStudent) {
     return this.db.list(this.dbPath).update(key, student);
   }
+  getTeacherByKey(key: string): Observable<ITeacher | null> {
+    return this.db.object<ITeacher>(`${this.ddbbPath}/${key}`).valueChanges();
+  }
+
 }

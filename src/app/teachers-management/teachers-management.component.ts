@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ITeacher } from '../core/models/common.model';
 import { StudentManagementService } from '../core/services/student-management.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -13,10 +13,14 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./teachers-management.component.scss']
 })
 export class TeachersManagementComponent implements OnInit {
+  // teachers: ITeacher[] = [];
+  // selectedTeacher: ITeacher | null = null;
   teachers: ITeacher[] = [];
+  filteredTeachers: ITeacher[] = [];
   selectedTeacher: ITeacher | null = null;
-
-  constructor(private studentService: StudentManagementService) {}
+  searchQuery: string = '';  // إضافة خاصية البحث
+  
+  constructor(private studentService: StudentManagementService,private router: Router) {}
 
   ngOnInit(): void {
     this.getAllTeachers();
@@ -26,11 +30,15 @@ export class TeachersManagementComponent implements OnInit {
   getAllTeachers() {
     const categories = ['Category 1', 'Category 2', 'Category 3'];
     this.teachers = [];
+    this.filteredTeachers = []; // إعادة تعيين القائمة المفلترة
 
     categories.forEach(category => {
-      this.studentService.getAllTeachers(category).subscribe({
+      this.studentService.getTeachersByCategory(category).subscribe({
         next: (data: ITeacher[]) => {
           this.teachers = [...this.teachers, ...data];
+          
+          this.filteredTeachers = this.teachers; // تعيين القائمة المفلترة لتكون نفس قائمة المعلمين عند البداية
+          console.log('Teachers:', this.teachers);
         },
         error: (error: any) => {
           console.error(`Error fetching teachers for ${category}: `, error);
@@ -38,18 +46,18 @@ export class TeachersManagementComponent implements OnInit {
       });
     });
   }
-  editTeacher(teacher: ITeacher) {
-    this.selectedTeacher = { ...teacher };
-  }
 
-  saveTeacher() {
-    if (this.selectedTeacher && this.selectedTeacher.key) {
-      this.studentService.updateTeacher(this.selectedTeacher.key, this.selectedTeacher).then(() => {
-        this.getAllTeachers(); // Refresh the teacher list after saving
-        this.selectedTeacher = null;
-      }).catch(error => {
-        console.error("Error updating teacher: ", error);
-      });
+  searchTeachers() {
+    if (this.searchQuery) {
+      this.filteredTeachers = this.teachers.filter(teacher =>
+        teacher.FirstName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        teacher.LastName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        teacher.Subject.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        teacher.Category.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+      console.log('Filtered Teachers:', this.filteredTeachers);  // طباعة القائمة المفلترة
+    } else {
+      this.filteredTeachers = this.teachers;
     }
   }
   deleteTeacher(teacher: ITeacher) {
@@ -61,9 +69,39 @@ export class TeachersManagementComponent implements OnInit {
       });
     }
   }
+  editTeacher(teacher: ITeacher) {
+    this.selectedTeacher = { ...teacher };
+  }
+  saveTeacher() {
+    if (this.selectedTeacher?.key && this.selectedTeacher?.Category) {
+      const { key, Category, ...teacherWithoutKey } = this.selectedTeacher;
+      this.studentService.updateTeacher(Category, key, teacherWithoutKey).then(() => {
+        this.getAllTeachers(); // تحديث قائمة المعلمين بعد الحفظ
+        this.selectedTeacher = null;
+        console.log(key);
+      }).catch(error => {
+        console.error("Error updating teacher: ", error);
+      });
+    }
+  }
+  
+  
+ 
+
 
   cancelEdit() {
     this.selectedTeacher = null;
   }
- 
+  
+  printPage() {
+    window.print();
+  }
+
+clickCard(id: string) {
+  if (id) {
+    this.router.navigate(['/teachers-management/chaque-teachers', id]);
+  } else {
+    console.error('Teacher key is undefined');
+  }
+}
     }
