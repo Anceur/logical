@@ -1,0 +1,47 @@
+// Container for the teacher details
+div {
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+  }
+  
+  // Style for the teacher's first name
+  h1:nth-child(1) {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 10px 0;
+  }
+  
+  // Style for the teacher's last name
+  h1:nth-child(2) {
+    font-size: 22px;
+    font-weight: 600;
+    color: #555;
+    margin: 0 0 10px 0;
+  }
+  
+  // Style for the teacher's category
+  h1:nth-child(3) {
+    font-size: 20px;
+    font-weight: 500;
+    color: #777;
+    margin: 0;
+  }
+  
+  // Media query for responsiveness
+  @media (max-width: 600px) {
+    div {
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+  
+    h1:nth-child(1), h1:nth-child(2), h1:nth-child(3) {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+  }
+  

@@ -77,8 +77,8 @@ export class StudentManagementService {
   updateStudent(key: string, student: IStudent) {
     return this.db.list(this.dbPath).update(key, student);
   }
-  getTeacherByKey(key: string): Observable<ITeacher | null> {
-    return this.db.object<ITeacher>(`${this.ddbbPath}/${key}`).valueChanges();
+  getTeacherByid(id: string): Observable<ITeacher | null> {
+    return this.db.object<ITeacher>(`${this.ddbbPath}/${id}`).valueChanges();
   }
 
 }
